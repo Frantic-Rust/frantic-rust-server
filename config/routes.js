@@ -5,6 +5,7 @@ module.exports = function (app, express) {
   app.post('/signup', controller.signup);
   app.post('/signin', controller.signin);
   app.post('/upload', controller.uploadPhoto);
+  app.post('/getPhotos', controller.getPhotos);
   //app.post('/user/camera', );
 };
   // app.post('/user/login', );
@@ -20,3 +21,4 @@ module.exports = function (app, express) {
 
 
   // app.use(); //add error handler if routes above not specified
+  
