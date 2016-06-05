@@ -6,19 +6,7 @@ module.exports = function (app, express) {
   app.post('/signin', controller.signin);
   app.post('/upload', controller.uploadPhoto);
   app.post('/getPhotos', controller.getPhotos);
-  //app.post('/user/camera', );
+  app.post('/vote', controller.vote);
+  app.post('/deletePhoto', controller.deletePhoto);
+  app.post('/updateProfile', controller.updateProfile);
 };
-  // app.post('/user/login', );
-
-  // app.get('/user/feed', console.log('hello'));
-  // app.post('/user/feed', );
-
-  // app.get('/user/settings', );
-  // app.post('/user/settings', );
-
-  // app.get('/user/camera', );
-  // app.post('/user/camera', );
-
-
-  // app.use(); //add error handler if routes above not specified
-  
