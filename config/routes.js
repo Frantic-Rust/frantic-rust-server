@@ -9,4 +9,5 @@ module.exports = function (app, express) {
   app.post('/vote', controller.vote);
   app.post('/deletePhoto', controller.deletePhoto);
   app.post('/updateProfile', controller.updateProfile);
+  app.get('/getAllPhotos', controller.getAllPhotos);
 };

@@ -134,8 +134,11 @@ module.exports = {
       comment: req.body.comment,
       imagelink: req.body.imageLink,
       likes: req.body.likes || 0,
-      dislikes: req.body.dislikes || 0
+      dislikes: req.body.dislikes || 0,
+      locationData: req.body.locationData
     };
+
+    console.log(obj);
 
     fetch(baseLink_pictures + mongoDB_API_KEY,
       {
@@ -187,8 +190,8 @@ module.exports = {
       method: 'DELETE',
       async: true
     }).then((response) => res.send(response));
-
   },
+
   vote: (req, res) => {
     const id = req.body._id.$oid;
 
@@ -240,7 +243,6 @@ module.exports = {
       profileImageLink: req.body.profileImageLink,
       lastSwiped: req.body.lastPhoto
     };
-    console.log('*******',newObj);
     fetch(baseLink_users_query + req.body.id + '?apiKey=' + mongoDB_API_KEY, 
     {
       method: 'PUT',
@@ -250,5 +252,19 @@ module.exports = {
         },
       body: JSON.stringify(newObj)
     }).then((response) => response.json());
+  },
+
+  getAllPhotos: (req, res) => {
+    fetch(baseLink_pictures + mongoDB_API_KEY)
+      .then((response) => response.json())
+        .then((responseData) => {
+          var results = [];
+          responseData.forEach(picture => {
+            if (picture.locationData !== undefined) {
+              results.push(picture);
+            }
+          });
+          res.status(200).send(results);
+        });
   }
 };
