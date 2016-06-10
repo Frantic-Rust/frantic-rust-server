@@ -1,28 +1,15 @@
 var express = require('express');
-var http = require('http');
+var app = express();
 var bodyParser = require('body-parser');
 
-var app = express();
+app.use(bodyParser.json());
 
+require('./Server/routes.js')(app, express);
 
-// parse application/x-www-form-urlencoded 
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
- 
-// parse application/json 
-app.use(bodyParser.json({limit: '50mb'}));
+var port = process.env.PORT || 3000;
 
-
-var port = process.env.PORT || 8000;
-
-require('./config/routes.js')(app, express);
-
-// starting server
-//============================================
-app.listen(port, function(err) {
-  if (err) {
-    console.log(err);
-  }
-  console.log('Server is functional, Frantic-Rust is on port: ' + port);
+app.listen(port, function(){
+  console.log('Roam listening on port 3000!');
 });
 
 module.exports = app;
